@@ -1,0 +1,21 @@
+# ov9782_params.yaml
+/usb_cam: # This must match your node name
+  ros__parameters:
+    video_device: "/dev/video0"
+    framerate: 120.0
+    io_method: "mmap"
+    frame_id: "camera_link"
+    pixel_format: "mjpeg2rgb" # Options: yuyv, uyvy, mjpeg
+    image_width: 1280
+    image_height: 800
+    brightness: -1
+    contrast: -1
+    saturation: -1
+    sharpness: -1
+    gain: -1
+    auto_white_balance: true
+    autoexposure: true
+    autofocus: false
+    # Camera calibration file path (optional)
+    camera_info_url: "package://sensehub_bringup/calibration/ov9782_info.yaml"
+    camera_name: "arducam_ov9782_usb_camera:_ardu"

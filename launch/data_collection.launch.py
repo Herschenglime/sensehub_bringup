@@ -35,10 +35,10 @@ def generate_launch_description():
     # 1. Ensure the target bags directory exists so rosbag doesn't fail
     bags_dir = os.path.expanduser('~/bags')
     os.makedirs(bags_dir, exist_ok=True)
-    v4l2_params_path = os.path.join(
+    usb_cam_params_path = os.path.join(
         get_package_share_directory('sensehub_bringup'),
-        'calibration',
-        'ov9782_v4l2_params.yaml'
+        'config',
+        'ov9782_params.yaml'
     )
 
     # 2. Declare the configurable parameter for the bag name
@@ -69,13 +69,12 @@ def generate_launch_description():
         output='screen'
     )
 
-    # 4. Camera node via v4l2_camera
+    # 4. Camera node via usb_cam
     camera_node = Node(
-        package='v4l2_camera',
-        executable='v4l2_camera_node',
-        name='camera',
-        namespace='camera0',
-        parameters=[v4l2_params_path],
+        package='usb_cam',
+        executable='usb_cam_node_exe',
+        name='usb_cam',
+        parameters=[usb_cam_params_path],
         output='screen'
     )
     # 5. Static Transform Publisher (LiDAR to Camera)
@@ -106,8 +105,8 @@ def generate_launch_description():
             '/unilidar/cloud',
             '/unilidar/imu',
             '/tf',
-            '/trig/image_raw',
-            '/trig/camera_info',
+            '/image_raw',
+            '/camera_info',
             '/tf_static'
         ],
         output='screen',

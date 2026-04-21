@@ -15,7 +15,7 @@
 
   <exec_depend>unilidar_sdk_ros2</exec_depend>
   <exec_depend>point_lio_ros2</exec_depend>
-  <exec_depend>v4l2_camera</exec_depend>
+  <exec_depend>usb_cam</exec_depend>
   <exec_depend>isaac_ros_nvblox</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
