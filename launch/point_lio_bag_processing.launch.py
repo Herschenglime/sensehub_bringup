@@ -139,8 +139,8 @@ def generate_launch_description():
             '--roll', '0',
             '--pitch', '0',
             '--yaw', '0',
-            '--frame-id', 'body',
-            '--child-frame-id', 'aft_mapped',
+            '--frame-id', 'aft_mapped',
+            '--child-frame-id', 'body',
         ],
         output='screen',
     )
