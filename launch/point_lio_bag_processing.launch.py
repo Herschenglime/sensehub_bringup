@@ -122,8 +122,8 @@ def generate_launch_description():
             '--roll', '0',
             '--pitch', '0',
             '--yaw', '0',
-            '--frame-id', 'unilidar_lidar',
-            '--child-frame-id', 'body',
+            '--frame-id', 'body',
+            '--child-frame-id', 'unilidar_lidar',
         ],
         output='screen',
     )
