@@ -1,5 +1,6 @@
 import os
 import shutil
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, ExecuteProcess, EmitEvent, RegisterEventHandler, LogInfo, OpaqueFunction
 from launch.event_handlers import OnProcessExit
@@ -34,6 +35,11 @@ def generate_launch_description():
     # 1. Ensure the target bags directory exists so rosbag doesn't fail
     bags_dir = os.path.expanduser('~/bags')
     os.makedirs(bags_dir, exist_ok=True)
+    v4l2_params_path = os.path.join(
+        get_package_share_directory('sensehub_bringup'),
+        'calibration',
+        'ov9782_v4l2_params.yaml'
+    )
 
     # 2. Declare the configurable parameter for the bag name
     bag_name_arg = DeclareLaunchArgument(
@@ -63,12 +69,13 @@ def generate_launch_description():
         output='screen'
     )
 
-    # 4. Process for Camera Trigger Sync
-    sync_process = ExecuteProcess(
-        cmd=[
-            'bash', '-c',
-            'source /home/team/workspaces/timing_ws/install/setup.bash && ros2 run ov9782_trig_sync trig_sync'
-        ],
+    # 4. Camera node via v4l2_camera
+    camera_node = Node(
+        package='v4l2_camera',
+        executable='v4l2_camera_node',
+        name='camera',
+        namespace='camera0',
+        parameters=[v4l2_params_path],
         output='screen'
     )
     # 5. Static Transform Publisher (LiDAR to Camera)
@@ -125,7 +132,7 @@ def generate_launch_description():
         no_bag_arg,
         overwrite_bag_arg,
         lidar_process,
-        sync_process,
+        camera_node,
         static_tf_node,
         pre_bag_cleanup,
         bag_process,

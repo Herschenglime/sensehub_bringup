@@ -31,6 +31,7 @@ endif()
 install(DIRECTORY
   launch
   config
+  calibration
   rviz
   scripts
   DESTINATION share/${PROJECT_NAME}

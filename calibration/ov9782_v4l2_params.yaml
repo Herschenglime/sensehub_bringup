@@ -1,0 +1,32 @@
+# glob everything so it handles different node names
+/**:
+  ros__parameters:
+    # ros params
+    video_device: "/dev/video0"
+    pixel_format: "YUYV" # v4l2-cam can't handle mjpg
+    image_size: [1280, 800] 
+    
+    # user controls
+    # in v4l2-cam, the driver picks the default value if this isn't included - uncomment and set a particular value if necessary
+    # brightness: -1
+    # contrast: -1
+    # saturation: -1
+    # hue: -1
+    # white_balance_automatic: false
+    # gamma: -1
+    # gain: -1
+    # power_line_frequency: -1
+    # white_balance_temperature: -1
+    # sharpness: -1
+    # backlight_compensation: -1
+
+    # external trigger stuff. disabled for now
+    # camera controls (enables external trigger)
+    # auto_exposure: 1
+    # i think it doesn't work at all with auto exposure, so this will need to be tweaked for applications
+    # exposure_time_absolute: 100
+    # exposure_dynamic_framerate: true
+
+    # calibration info
+    camera_info_url: "package://sensehub_bringup/calibration/ov9782_info.yaml"
+    camera_frame_id: "camera_link"
