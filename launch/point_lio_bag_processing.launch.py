@@ -111,23 +111,6 @@ def generate_launch_description():
         }.items(),
     )
 
-    lidar_to_body_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='unilidar_to_body_tf',
-        arguments=[
-            '--x', '0',
-            '--y', '0',
-            '--z', '0',
-            '--roll', '0',
-            '--pitch', '0',
-            '--yaw', '0',
-            '--frame-id', 'body',
-            '--child-frame-id', 'unilidar_lidar',
-        ],
-        output='screen',
-    )
-
     body_to_aft_mapped_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -141,6 +124,23 @@ def generate_launch_description():
             '--yaw', '0',
             '--frame-id', 'aft_mapped',
             '--child-frame-id', 'body',
+        ],
+        output='screen',
+    )
+
+    body_to_camera_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='body_to_camera_tf',
+        arguments=[
+            '--x', '0',
+            '--y', '-0.0889',
+            '--z', '0.11938',
+            '--roll', '0',
+            '--pitch', '0',
+            '--yaw', '0',
+            '--frame-id', 'body',
+            '--child-frame-id', 'camera_link',
         ],
         output='screen',
     )
@@ -176,6 +176,11 @@ def generate_launch_description():
             'ros2', 'bag', 'play',
             LaunchConfiguration('resolved_input_bag'),
             '--clock',
+            '--topics',
+            '/unilidar/cloud',
+            '/unilidar/imu',
+            '/image_raw',
+            '/camera_info',
         ],
         output='screen',
     )
@@ -208,8 +213,8 @@ def generate_launch_description():
         output_bag_name_arg,
         overwrite_output_bag_arg,
         point_lio_launch,
-        lidar_to_body_tf,
         body_to_aft_mapped_tf,
+        body_to_camera_tf,
         pre_output_cleanup,
         validate_input_bag,
         record_process,
