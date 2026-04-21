@@ -86,13 +86,13 @@ def generate_launch_description():
         name='lidar_to_camera_tf',
         arguments=[
             '--x', '0', 
-            '--y', '0.0889', 
-            '--z', '-0.11938', 
+            '--y', '-0.0889', 
+            '--z', '0.11938', 
             '--roll', '0', 
             '--pitch', '0', 
             '--yaw', '0',
             '--frame-id', 'unilidar_lidar', 
-            '--child-frame-id', 'camera_frame'
+            '--child-frame-id', 'camera_link'
         ],
         output='screen'
     )

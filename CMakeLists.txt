@@ -7,13 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(launch REQUIRED)
-find_package(launch_ros REQUIRED)
 find_package(rclpy REQUIRED)
-find_package(point_lio_ros2 REQUIRED)
-find_package(unilidar_sdk_ros2 REQUIRED)
-find_package(v4l2_camera REQUIRED)
-find_package(isaac_ros_nvblox REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -32,8 +26,6 @@ install(DIRECTORY
   launch
   config
   calibration
-  rviz
-  scripts
   DESTINATION share/${PROJECT_NAME}
 )
 

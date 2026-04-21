@@ -12,10 +12,11 @@
   <depend>launch</depend>
   <depend>launch_ros</depend>
   <depend>rclpy</depend>
-  <depend>point_lio_ros2</depend>
-  <depend>unilidar_sdk_ros2</depend>
-  <depend>v4l2_camera</depend>
-  <depend>isaac_ros_nvblox</depend>
+
+  <exec_depend>unilidar_sdk_ros2</exec_depend>
+  <exec_depend>point_lio_ros2</exec_depend>
+  <exec_depend>v4l2_camera</exec_depend>
+  <exec_depend>isaac_ros_nvblox</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
