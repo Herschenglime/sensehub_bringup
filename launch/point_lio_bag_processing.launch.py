@@ -115,6 +115,7 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         name='body_to_aft_mapped_tf',
+        parameters=[{'use_sim_time': True}],
         arguments=[
             '--x', '0',
             '--y', '0',
@@ -132,6 +133,7 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         name='body_to_camera_tf',
+        parameters=[{'use_sim_time': True}],
         arguments=[
             '--x', '0',
             '--y', '-0.0889',
